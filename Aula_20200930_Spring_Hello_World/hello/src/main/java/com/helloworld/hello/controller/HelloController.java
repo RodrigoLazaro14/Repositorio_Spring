@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class HelloController 
 {
-	@GetMapping //sempre quando eu chamar um metodo get dentro de hello ele vai cair dentro desse metodo abaixo
+	@GetMapping("/gethello") //sempre quando eu chamar um metodo get dentro de hello ele vai cair dentro desse metodo abaixo
 	public String hello()
 	{
 		return "Hello World!";
+	}
+	
+	@GetMapping("/teste") 
+	public String teste()
+	{
+		return "teste hahahahahahahahhaahha";
 	}
 }
