@@ -1,6 +1,7 @@
-package com.servico.global;
+package com.minhaescola.global.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,38 +12,43 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class Controller {
-	@Autowired // injeta o jpa
-	private ServicoRepository repository;
+import com.minhaescola.global.model.AlunoModel;
+import com.minhaescola.global.repository.AlunoRepository;
 
-	@GetMapping("/servicos")
-	public List<ServicoModel> buscarTodos() { // o list seria como se fosse o select * from do mysql
+@RestController
+public class AlunoController {
+		
+	@Autowired // injeta o jpa
+	private AlunoRepository repository;
+	
+	@GetMapping("/aluno")
+	public List<AlunoModel> buscarTodos() { // o list seria como se fosse o select * from do mysql
 		return repository.findAll();
 	}
 	
-	// requerer a resposta, save
-	@PostMapping ("/servicos")
-	public ServicoModel criar(@RequestBody ServicoModel model) {
+	@GetMapping("/aluno/{id}")
+	public Optional<AlunoModel> buscarPorId(@PathVariable Long id) {
+		return repository.findById(id);
+	}
+	
+	@PostMapping("/aluno")
+	public AlunoModel cadastro(@RequestBody AlunoModel model) {
 		repository.save(model);
 		return model;
 	}
 	
-	@GetMapping("/servicos/nome/{nome}")
-	public List<ServicoModel> buscarPorNome(@PathVariable String nome) {
-		return repository.findByNome(nome);
-	}
-
-	@PutMapping("/servicos/{id}")
-	public ServicoModel atualizar(@PathVariable Long id, @RequestBody ServicoModel model) {
+	@PutMapping("/aluno/{id}")
+	public AlunoModel atualizar(@PathVariable Long id, @RequestBody AlunoModel model) {
 		model.setId(id);
 		repository.save(model);
 		return model;
 	}
 	
-	@DeleteMapping ("/servicos/{id}")
+	@DeleteMapping("/aluno/{id}")
 	public String remover(@PathVariable Long id) {
 		repository.deleteById(id);
-		return "sucesso";
+		return "Sucesso";
+		
 	}
+	
 }
