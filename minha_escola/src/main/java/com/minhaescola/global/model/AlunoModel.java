@@ -16,9 +16,11 @@ public class AlunoModel {
 	@Column
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
+	
 	@Column
 	@NotNull
 	private String nome;
+	
 	@Column
 	@NotNull
 	private boolean matriculado;

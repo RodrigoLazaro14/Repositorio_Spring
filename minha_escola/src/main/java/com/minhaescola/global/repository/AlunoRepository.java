@@ -9,5 +9,5 @@ import com.minhaescola.global.model.AlunoModel;
 
 public interface AlunoRepository extends JpaRepository<AlunoModel, Long>{
 
-	public Optional<AlunoModel> findById(Long id);
+
 }
