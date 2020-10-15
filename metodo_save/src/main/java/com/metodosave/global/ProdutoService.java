@@ -1,16 +1,22 @@
 package com.metodosave.global;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
 public class ProdutoService {
+
 	@Autowired
 	private ProdutoRepository repo;
-	public void save(Produto produto) {
+	
+
+	public void save(TableProduto produto) {
 		repo.save(produto);
 	}
+	
+	
 }
